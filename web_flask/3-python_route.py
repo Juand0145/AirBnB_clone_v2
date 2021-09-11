@@ -3,6 +3,7 @@
 from flask import Flask
 app = Flask(__name__)
 
+
 @app.route("/", strict_slashes=False)
 def function_route():
     """Return Hello HBNB!"""
@@ -14,10 +15,12 @@ def function_hbnb():
     """Return HBNB"""
     return "HBNB"
 
+
 @app.route("/c/<text>", strict_slashes=False)
 def function_cisfun(text):
     """Return the text"""
     return "C {}".format(text.replace("_", " "))
+
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
