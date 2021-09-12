@@ -9,14 +9,12 @@ app = Flask(__name__)
 @app.route("/states_list", strict_slashes=False)
 def state_list():
     """Is a methdo display a HTML page"""
-    states = []
-    for key, value in storage.all(State).items():
-        states.append(value)
-    return render_template('7-states_list.html', states=states)
+    return render_template("7-states_list.html",
+                           data=storage.all(State).values())
 
 
 @app.teardown_appcontext
-def storage_close(response_or_exc):
+def storage_close(var=None):
     """Close the SQL database"""
     storage.close()
 
