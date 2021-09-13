@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""7-states_list module
-Starts a Flask web application
-"""
+"""List of states file"""
 
 from flask import Flask, render_template
 from models import storage, State
@@ -10,17 +8,14 @@ app = Flask(__name__)
 
 @app.route("/states_list", strict_slashes=False)
 def state_list():
-    """Displays HTML page
-    H1 tag: States
-    UL tag: list of all State objects in DBStorage sorted by name
-    """
+    """Is a methdo display a HTML page"""
     return render_template("7-states_list.html",
                            data=storage.all(State).values())
 
 
 @app.teardown_appcontext
 def storage_close(var=None):
-    """Removes current SQLAlchemy Session"""
+    """Close the SQL database"""
     storage.close()
 
 
